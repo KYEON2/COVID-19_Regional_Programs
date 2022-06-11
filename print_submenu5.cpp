@@ -1,0 +1,30 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+#include "covid19.h"
+
+void print_submenu5(FILE* fp) //±¤ÁÖ±¤¿ª½Ã
+{
+	char buffer[100]; // [Æò°¡Ç×¸ñ 3] : ¹è¿­ »ç¿ë
+	STATUS guangju = { "533,825","557" };
+
+	printf("<±¤ÁÖ±¤¿ª½Ã>\n-----------------------------------\n");
+	while (feof(fp) == NULL)
+	{
+		fgets(buffer, 100, fp);
+
+		if (strcmp(buffer, "±¤»ê±¸			161,328\n") == 0)
+		{
+			printf("%s", buffer);
+			while (strcmp(buffer, "¼­±¸			108,925\n") != 0)
+			{
+				fgets(buffer, 100, fp);
+				printf("%s", buffer);
+			}
+			break;
+		}
+	}
+	printf("-----------------------------------\n");
+	printf("ÃÑ È®ÁøÀÚ¼ö		%s\n", guangju.total);
+	printf("»ç¸ÁÀÚ¼ö		%s\n", guangju.death);
+}
